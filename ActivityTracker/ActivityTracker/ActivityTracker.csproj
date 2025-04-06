@@ -5,7 +5,7 @@
     <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
+	<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
 </Project>

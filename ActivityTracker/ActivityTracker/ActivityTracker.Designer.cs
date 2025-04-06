@@ -1,0 +1,52 @@
+﻿namespace ActivityTracker
+{
+    partial class ActivityTracker
+    {
+        /// <summary>
+        ///  Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        ///  Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        ///  Required method for Designer support - do not modify
+        ///  the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            SuspendLayout();
+            // 
+            // ActivityTracker
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(590, 450);
+            Name = "ActivityTracker";
+            Text = "ActivityTracker";
+            Load += ActivityTracker_Load;
+            ResumeLayout(false);
+        }
+
+        #endregion
+        private TableLayoutPanel mainTableLayoutPanel;
+        private MenuStrip mainMenuStrip;
+        private ToolStripMenuItem uploadActivityStripMenuItem;
+        private Label activitiesTitle;
+        private static TableLayoutPanel activitiesTableLayoutPanel;
+        private static Label noActivitiesLabel;
+    }
+}
