@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing.Drawing2D;
 
 namespace ActivityTracker
 {
     internal static class GeneralValues
     {
-        internal static Color PrimaryBackgroundColor = Color.FromArgb(255, 255, 255, 255); // background
+        internal static Color PrimaryBackgroundColor = Color.FromArgb(255, 255, 255, 255);
         internal static Color SecondaryBackgroundColor = Color.FromArgb(255, 247, 247, 249);
         internal static Color GradientColor1 = Color.FromArgb(255, 250, 250, 252);
         internal static Color GradientColor2 = Color.FromArgb(255, 237, 238, 242);

@@ -1,5 +1,3 @@
-using Microsoft.VisualBasic.FileIO;
-
 namespace ActivityTracker
 {
     internal static class Program
@@ -13,7 +11,7 @@ namespace ActivityTracker
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
 
-
+            // Create activity database directory in AppData/Local/
             Directory.CreateDirectory(GeneralValues.appFolder);
             if (!File.Exists(GeneralValues.activitiesDatabase))
             {
@@ -23,7 +21,6 @@ namespace ActivityTracker
 
             ApplicationConfiguration.Initialize();
             Application.Run(new ActivityTracker());
-            //Application.Run(new ActivityForm());
         }
 
     }

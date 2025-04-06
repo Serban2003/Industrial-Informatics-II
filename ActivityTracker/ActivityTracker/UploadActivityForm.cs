@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace ActivityTracker
+﻿namespace ActivityTracker
 {
     public partial class UploadActivityForm : Form
     {
@@ -16,19 +6,23 @@ namespace ActivityTracker
         {
             InitializeComponent();
 
+            // UploadActivityForm
             Text = "Upload Activity";
             BackColor = GeneralValues.PrimaryBackgroundColor;
             ForeColor = GeneralValues.ButtonTextColor;
             Font = GeneralValues.BodyFontSmall;
 
+            // uploadSourceTabControl
             uploadSourceTabControl = new TabControl();
             uploadSourceTabControl.Dock = DockStyle.Fill;
-    
             Controls.Add(uploadSourceTabControl);
 
+            // fileUploadTabPage
             fileUploadTabPage = new FileUploadTabPage();
-            manualUploadTabPage = new ManualUploadTabPage();
             uploadSourceTabControl.TabPages.Add(fileUploadTabPage);
+
+            // manualUploadTabPage
+            manualUploadTabPage = new ManualUploadTabPage();
             uploadSourceTabControl.TabPages.Add(manualUploadTabPage);
         }
     }

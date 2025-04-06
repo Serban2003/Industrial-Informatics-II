@@ -22,6 +22,7 @@
 
         public FileUploadTabPage()
         {
+            // FileUploadTabPage
             Text = "File Upload";
             Padding = new Padding(GeneralValues.PaddingValue);
             BackColor = GeneralValues.PrimaryBackgroundColor;
@@ -49,7 +50,7 @@
             selectFileButton = new CustomStyleButton();
             selectFileButton.Text = "Select file";
             selectFileButton.AutoSize = true;
-            selectFileButton.Click += new EventHandler(showFileDialog);
+            selectFileButton.Click += new EventHandler(ShowFileDialog);
             fileDialogFlowLayoutPanel.Controls.Add(selectFileButton);
 
             // fileNameLabel
@@ -68,7 +69,7 @@
             mainTableLayoutPanel.Controls.Add(activitiesListTableLayoutPanel, 0, 2);
         }
 
-        private void showFileDialog(Object sender, EventArgs e)
+        private void ShowFileDialog(Object sender, EventArgs e)
         {
             // fileDialog
             openFileDialog = new OpenFileDialog();
@@ -82,10 +83,9 @@
                     FileInfo fileInfo = new FileInfo(openFileDialog.FileName);
                     fileNameLabel.Text = fileInfo.Name;
 
-                    List<Activity> activities = Activity.parseActivityFile(fileInfo.FullName);
-                    showActivityDetails(activities);
+                    List<Object> activities = Activity.parseActivityFile(fileInfo.FullName);
+                    ShowActivityDetails(activities);
 
-                    
                     if(fileNameLabel.Width > 300)
                     {
                         Int32 height = fileNameLabel.Height;
@@ -96,12 +96,12 @@
                 }
                 catch
                 {
-                    MessageBox.Show("ERROR! Couldn't parse activity!");
+                    MessageBox.Show("Couldn't parse activity!");
                 }
             }
         }
 
-        private void showActivityDetails(List<Activity> activitiesList)
+        private void ShowActivityDetails(List<Object> activitiesList)
         {
             Int32 index = 0;
             foreach (Activity activityItem in activitiesList) {

@@ -1,10 +1,4 @@
 ﻿using Microsoft.VisualBasic.FileIO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ActivityTracker
 {
@@ -90,9 +84,9 @@ namespace ActivityTracker
         }
 
         //Title|Description|Type|Date|Duration|Calories|AvgHR|GpxFile|Elevation|Distance|AvgPace|AvgSpeed|NumberOfSets
-        public static List<Activity> parseActivityFile(String fileName)
+        public static List<Object> parseActivityFile(String fileName)
         {
-            List<Activity> activityList = new List<Activity>();
+            List<Object> activityList = new List<Object>();
 
             using (TextFieldParser parser = new TextFieldParser(fileName))
             {
@@ -148,22 +142,6 @@ namespace ActivityTracker
 
         public static void AddActivity(Activity activity)
         {
-            if (activity is WorkoutActivity)
-            {
-                activity = (WorkoutActivity)activity;
-            }
-            else if (activity is RunActivity)
-            {
-                activity = (RunActivity)activity;
-            }
-            else if (activity is HikeActivity)
-            {
-                activity = (HikeActivity)activity;
-            }
-            else if (activity is BikeRideActivity)
-            {
-                activity = (BikeRideActivity)activity;
-            }
             File.AppendAllText(GeneralValues.activitiesDatabase, $"{activity.ToCSVString()}\n");
         }
     }
@@ -213,7 +191,7 @@ namespace ActivityTracker
         }
         public String FormatedAvgPace
         {
-            get => avgPace.ToString("00:mm:ss");
+            get => avgPace.ToString("mm:ss");
         }
         public Double AvgSpeed
         {
@@ -231,7 +209,6 @@ namespace ActivityTracker
         {
             return base.ToCSVString() + $"|{elevation}|{distance}|{FormatedAvgPace}|{avgSpeed}|0";
         }
-
     }
 
     public class BikeRideActivity : Activity
@@ -291,7 +268,7 @@ namespace ActivityTracker
 
         public String FormatedAvgPace
         {
-            get => avgPace.ToString("00:mm:ss");
+            get => avgPace.ToString("mm:ss");
         }
 
         public Double AvgSpeed

@@ -44,11 +44,13 @@
 
         public ManualUploadTabPage()
         {
+            // ManualUploadTabPage
             Text = "Manual Upload";
             Padding = new Padding(GeneralValues.PaddingValue);
             BackColor = GeneralValues.PrimaryBackgroundColor;
             ForeColor = GeneralValues.PrimaryTextColor;
 
+            // mainTableLayoutPanel
             mainTableLayoutPanel = new TableLayoutPanel();
             mainTableLayoutPanel.Dock = DockStyle.Fill;
             mainTableLayoutPanel.ColumnCount = 2;
@@ -122,10 +124,11 @@
             activityDateLabel.Anchor = AnchorStyles.Left;
             mainTableLayoutPanel.Controls.Add(activityDateLabel, 0, 4);
 
-            FlowLayoutPanel activityDateTimeLayoutPanel = new FlowLayoutPanel();
-            activityDateTimeLayoutPanel.FlowDirection = FlowDirection.LeftToRight;
-            activityDateTimeLayoutPanel.AutoSize = true;
-            mainTableLayoutPanel.Controls.Add(activityDateTimeLayoutPanel, 1, 4);
+            // activityDateTimeLayoutPanel
+            FlowLayoutPanel activityDateTimeFlayoutLayoutPanel = new FlowLayoutPanel();
+            activityDateTimeFlayoutLayoutPanel.FlowDirection = FlowDirection.LeftToRight;
+            activityDateTimeFlayoutLayoutPanel.AutoSize = true;
+            mainTableLayoutPanel.Controls.Add(activityDateTimeFlayoutLayoutPanel, 1, 4);
 
             // activityDatePicker
             activityDatePicker = new DateTimePicker();
@@ -133,7 +136,7 @@
             activityDatePicker.Font = GeneralValues.SubtitleFont;
             activityDatePicker.Format = DateTimePickerFormat.Short;
             activityDatePicker.Value = DateTime.Now;
-            activityDateTimeLayoutPanel.Controls.Add(activityDatePicker);
+            activityDateTimeFlayoutLayoutPanel.Controls.Add(activityDatePicker);
 
             // activityTimePicker
             activityTimePicker = new DateTimePicker();
@@ -142,7 +145,7 @@
             activityTimePicker.Format = DateTimePickerFormat.Time;
             activityTimePicker.ShowUpDown = true;
             activityTimePicker.Value = DateTime.Now;
-            activityDateTimeLayoutPanel.Controls.Add(activityTimePicker);
+            activityDateTimeFlayoutLayoutPanel.Controls.Add(activityTimePicker);
 
             // activityDurationLabel
             activityDurationLabel = new Label();
@@ -152,6 +155,7 @@
             activityDurationLabel.Anchor = AnchorStyles.Left;
             mainTableLayoutPanel.Controls.Add(activityDurationLabel, 0, 5);
 
+            // durationFlowLayoutPanel
             FlowLayoutPanel durationFlowLayoutPanel = new FlowLayoutPanel();
             durationFlowLayoutPanel.AutoSize = true;
             durationFlowLayoutPanel.FlowDirection = FlowDirection.LeftToRight;
@@ -183,6 +187,7 @@
             activityCaloriesLabel.Anchor = AnchorStyles.Left;
             mainTableLayoutPanel.Controls.Add(activityCaloriesLabel, 0, 6);
 
+            // caloriesFlowLayoutPanel
             FlowLayoutPanel caloriesFlowLayoutPanel = new FlowLayoutPanel();
             caloriesFlowLayoutPanel.AutoSize = true;
             caloriesFlowLayoutPanel.FlowDirection = FlowDirection.LeftToRight;
@@ -210,6 +215,7 @@
             activityAvgHRLabel.Anchor = AnchorStyles.Left;
             mainTableLayoutPanel.Controls.Add(activityAvgHRLabel, 0, 7);
 
+            // avgHRFlowLayoutPanel
             FlowLayoutPanel avgHRFlowLayoutPanel = new FlowLayoutPanel();
             avgHRFlowLayoutPanel.AutoSize = true;
             avgHRFlowLayoutPanel.FlowDirection = FlowDirection.LeftToRight;
@@ -269,6 +275,7 @@
                 activityElevationLabel.Anchor = AnchorStyles.Left;
                 mainTableLayoutPanel.Controls.Add(activityElevationLabel, 0, 9);
 
+                // elevationLayoutPanel
                 FlowLayoutPanel elevationLayoutPanel = new FlowLayoutPanel();
                 elevationLayoutPanel.AutoSize = true;
                 elevationLayoutPanel.FlowDirection = FlowDirection.LeftToRight;
@@ -302,6 +309,7 @@
                 activityDistanceLabel.Anchor = AnchorStyles.Left;
                 mainTableLayoutPanel.Controls.Add(activityDistanceLabel, 0, 10);
 
+                // durationLayoutPanel
                 FlowLayoutPanel durationLayoutPanel = new FlowLayoutPanel();
                 durationLayoutPanel.AutoSize = true;
                 durationLayoutPanel.FlowDirection = FlowDirection.LeftToRight;
@@ -335,6 +343,7 @@
                 activityAvgSpeedLabel.Anchor = AnchorStyles.Left;
                 mainTableLayoutPanel.Controls.Add(activityAvgSpeedLabel, 0, 11);
 
+                // avgSpeedLayoutPanel
                 FlowLayoutPanel avgSpeedLayoutPanel = new FlowLayoutPanel();
                 avgSpeedLayoutPanel.AutoSize = true;
                 avgSpeedLayoutPanel.FlowDirection = FlowDirection.LeftToRight;
@@ -461,7 +470,7 @@
                 }
                 catch
                 {
-                    MessageBox.Show("ERROR! Couldn't parse activity!");
+                    MessageBox.Show("Couldn't parse activity!");
                 }
             }
         }
@@ -479,7 +488,6 @@
             Int32 avgHR = Int32.Parse(activityAvgHRNumericUpDown.Text);
             String gpxFile = fileInfo.FullName;
 
-       
             switch(activityTypeComboBox.SelectedIndex)
             {
                 case (int)Activity.ActivityType.Workout:
@@ -523,18 +531,16 @@
         {
             if (rowIndex >= panel.RowCount) return;
 
-            // Remove controls in the target row
             for (int col = 0; col < panel.ColumnCount; col++)
             {
                 var control = panel.GetControlFromPosition(col, rowIndex);
                 if (control != null)
                 {
                     panel.Controls.Remove(control);
-                    control.Dispose(); // Optional cleanup
+                    control.Dispose();
                 }
             }
 
-            // Move controls up from rows below
             for (int row = rowIndex + 1; row < panel.RowCount; row++)
             {
                 for (int col = 0; col < panel.ColumnCount; col++)
@@ -545,7 +551,6 @@
                 }
             }
 
-            // Remove the last RowStyle
             if (panel.RowStyles.Count > 0)
                 panel.RowStyles.RemoveAt(panel.RowStyles.Count - 1);
         }

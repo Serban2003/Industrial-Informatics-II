@@ -1,22 +1,21 @@
-using System.Diagnostics;
-
 namespace ActivityTracker
 {
     public partial class ActivityTracker : Form
     {
-        static List<Activity> activitiesList;
+        static List<Object> activitiesList;
         public ActivityTracker()
         {
             CreateFileWatcher(GeneralValues.appFolder);
             InitializeComponent();
 
+            // ActivityTracker
             BackColor = GeneralValues.PrimaryBackgroundColor;
             ForeColor = GeneralValues.PrimaryTextColor;
-
-            mainMenuStrip = new MenuStrip();
-            uploadActivityStripMenuItem = new ToolStripMenuItem();
+            Font = GeneralValues.BodyFont;
+            Size = new Size(1000, 1000);
 
             // mainMenuStrip
+            mainMenuStrip = new MenuStrip();
             mainMenuStrip.Items.AddRange(new ToolStripItem[] {uploadActivityStripMenuItem});
             mainMenuStrip.Location = new Point(0, 0);
             mainMenuStrip.Text = "Main Menu";
@@ -27,9 +26,10 @@ namespace ActivityTracker
             Controls.Add(mainMenuStrip);
 
             // uploadActivityStripMenuItem
+            uploadActivityStripMenuItem = new ToolStripMenuItem();
             uploadActivityStripMenuItem.AutoSize = true;
             uploadActivityStripMenuItem.Text = "Upload Activity";
-            uploadActivityStripMenuItem.Click += new EventHandler(showUploadActivityForm);
+            uploadActivityStripMenuItem.Click += new EventHandler(ShowUploadActivityForm);
 
             // mainFlowLayoutPanel
             mainTableLayoutPanel = new TableLayoutPanel();
@@ -50,18 +50,14 @@ namespace ActivityTracker
             activitiesTableLayoutPanel.Dock = DockStyle.Fill;
             activitiesTableLayoutPanel.AutoScroll = true;
             activitiesTableLayoutPanel.Padding = new Padding(0, 0, SystemInformation.VerticalScrollBarWidth, 0);
-            //activitiesTableLayoutPanel.MinimumSize = new Size(mainFlowLayoutPanel.Width - 3 * (mainFlowLayoutPanel.Padding.Right + mainFlowLayoutPanel.Padding.Left), 0);
             mainTableLayoutPanel.Controls.Add(activitiesTableLayoutPanel, 0, 1);
-
-            Font = GeneralValues.BodyFont;
-            Size = new Size(1000, 1000);
         }
 
         private void ActivityTracker_Load(object sender, EventArgs e)
         {
-            updateActivities();
+            UpdateActivities();
         }
-        private void showUploadActivityForm(object sender, EventArgs e)
+        private void ShowUploadActivityForm(object sender, EventArgs e)
         {
             UploadActivityForm uploadActivityForm = new UploadActivityForm();
             uploadActivityForm.ShowDialog();
@@ -69,35 +65,28 @@ namespace ActivityTracker
 
         public void CreateFileWatcher(string path)
         {
-            // Create a new FileSystemWatcher and set its properties.
             FileSystemWatcher watcher = new FileSystemWatcher();
             watcher.Path = path;
             watcher.Filter = "*.csv";
-            /* Watch for changes in LastAccess and LastWrite times, and 
-               the renaming of files or directories. */
-            watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite
-               | NotifyFilters.FileName | NotifyFilters.DirectoryName;
+            watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName;
 
-            // Add event handlers.
             watcher.Changed += new FileSystemEventHandler(OnChanged);
             watcher.Created += new FileSystemEventHandler(OnChanged);
             watcher.Deleted += new FileSystemEventHandler(OnChanged);
 
-            // Begin watching.
             watcher.EnableRaisingEvents = true;
         }
 
-        // Define the event handlers.
         private void OnChanged(object source, FileSystemEventArgs e)
         {
             if (InvokeRequired)
             {
-                Invoke(new Action(() => updateActivities()));
+                Invoke(new Action(() => UpdateActivities()));
                 return;
             }
         }
 
-        private static void updateActivities()
+        private static void UpdateActivities()
         {
             activitiesTableLayoutPanel.Controls.Clear();
             activitiesList = Activity.parseActivityFile(GeneralValues.activitiesDatabase);
@@ -134,6 +123,7 @@ namespace ActivityTracker
             }
             else
             {
+                // noActivitiesLabel
                 noActivitiesLabel = new Label();
                 noActivitiesLabel.Text = "You don't have any activities yet!";
                 noActivitiesLabel.AutoSize = true;

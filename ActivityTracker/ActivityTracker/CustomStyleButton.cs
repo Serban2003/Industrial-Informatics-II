@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Design;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.TimeZoneInfo;
+﻿using System.Drawing.Drawing2D;
 
 namespace ActivityTracker
 {
@@ -98,14 +91,14 @@ namespace ActivityTracker
             g.SmoothingMode = SmoothingMode.AntiAlias;
 
             Rectangle rect = new Rectangle(0, 0, Width, Height);
-            rect.Inflate(-1, -1); // Fix border clipping
+            rect.Inflate(-1, -1);
 
             using (GraphicsPath path = GeneralValues.GetRoundedRectanglePath(rect, GeneralValues.CornerRadius))
             using (SolidBrush gradientBrush = new SolidBrush(currentBackColor))
-            using (Pen borderPen = new Pen(GeneralValues.BorderColor, 1)) // Change border color & thickness
+            using (Pen borderPen = new Pen(GeneralValues.BorderColor, 1))
             {
-                g.FillPath(gradientBrush, path); // Fill background
-                g.DrawPath(borderPen, path); // Draw border
+                g.FillPath(gradientBrush, path);
+                g.DrawPath(borderPen, path);
             }
             TextRenderer.DrawText(
                 e.Graphics,

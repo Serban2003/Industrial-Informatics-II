@@ -1,6 +1,5 @@
 ﻿using System.Drawing.Drawing2D;
 
-
 namespace ActivityTracker
 {
     internal class CustomRadioButton : RadioButton
@@ -14,7 +13,7 @@ namespace ActivityTracker
             set
             {
                 checkedColor = value;
-                this.Invalidate();
+                Invalidate();
             }
         }
         public Color UnCheckedColor
@@ -23,7 +22,7 @@ namespace ActivityTracker
             set
             {
                 unCheckedColor = value;
-                this.Invalidate();
+                Invalidate();
             }
         }
 
@@ -37,39 +36,40 @@ namespace ActivityTracker
             graphics.SmoothingMode = SmoothingMode.AntiAlias;
             float rbBorderSize = 14F;
             float rbCheckSize = 8F;
+
             RectangleF rectRbBorder = new RectangleF()
             {
                 X = 0.5F,
-                Y = (this.Height - rbBorderSize) / 2,
+                Y = (Height - rbBorderSize) / 2,
                 Width = rbBorderSize,
                 Height = rbBorderSize
             };
             RectangleF rectRbCheck = new RectangleF()
             {
                 X = rectRbBorder.X + ((rectRbBorder.Width - rbCheckSize) / 2), 
-                Y = (this.Height - rbCheckSize) / 2, 
+                Y = (Height - rbCheckSize) / 2, 
                 Width = rbCheckSize,
                 Height = rbCheckSize
             };
-            //Drawing
+
             using (Pen penBorder = new Pen(checkedColor, 1.6F))
             using (SolidBrush brushRbCheck = new SolidBrush(checkedColor))
-            using (SolidBrush brushText = new SolidBrush(this.ForeColor))
+            using (SolidBrush brushText = new SolidBrush(ForeColor))
             {
-                graphics.Clear(this.BackColor);
+                graphics.Clear(BackColor);
                 
-                if (this.Checked)
+                if (Checked)
                 {
-                    graphics.DrawEllipse(penBorder, rectRbBorder);//Circle border
-                    graphics.FillEllipse(brushRbCheck, rectRbCheck); //Circle Radio Check
+                    graphics.DrawEllipse(penBorder, rectRbBorder);
+                    graphics.FillEllipse(brushRbCheck, rectRbCheck);
                 }
                 else
                 {
                     penBorder.Color = unCheckedColor;
-                    graphics.DrawEllipse(penBorder, rectRbBorder); //Circle border
+                    graphics.DrawEllipse(penBorder, rectRbBorder);
                 }
                 
-                graphics.DrawString(this.Text, this.Font, brushText, rbBorderSize + 8, (this.Height - TextRenderer.MeasureText(this.Text, this.Font).Height) / 2);
+                graphics.DrawString(Text, Font, brushText, rbBorderSize + 8, (Height - TextRenderer.MeasureText(Text, Font).Height) / 2);
             }
         }
     }
