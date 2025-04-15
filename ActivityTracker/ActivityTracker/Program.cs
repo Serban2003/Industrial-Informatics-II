@@ -12,11 +12,11 @@ namespace ActivityTracker
             // see https://aka.ms/applicationconfiguration.
 
             // Create activity database directory in AppData/Local/
-            Directory.CreateDirectory(GeneralValues.appFolder);
-            if (!File.Exists(GeneralValues.activitiesDatabase))
+            Directory.CreateDirectory(GeneralValues.AppFolder);
+            if (!File.Exists(GeneralValues.ActivitiesDatabase))
             {
-                File.Create(GeneralValues.activitiesDatabase).Close();
-                File.WriteAllText(GeneralValues.activitiesDatabase, "Title|Description|Type|Date|Duration|Calories|AvgHR|GpxFile|Elevation|Distance|AvgPace|AvgSpeed|NumberOfSets\n");
+                File.Create(GeneralValues.ActivitiesDatabase).Close();
+                File.WriteAllText(GeneralValues.ActivitiesDatabase, "Title|Description|Type|Date|Duration|Calories|AvgHR|GpxFile|Elevation|Distance|AvgPace|AvgSpeed|NumberOfSets\n");
             }
 
             ApplicationConfiguration.Initialize();

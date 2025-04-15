@@ -26,7 +26,11 @@
         Label acitivityGpxFileDescriptionLabel;
         TextBox activityTitleTextBox;
         TextBox activityDescriptionTextBox;
-        ComboBox activityTypeComboBox;
+        FlowLayoutPanel activityTypeFlowLayoutPanel;
+        RadioButton activityTypeRadioBox_Workout;
+        RadioButton activityTypeRadioBox_Run;
+        RadioButton activityTypeRadioBox_Hike;
+        RadioButton activityTypeRadioBox_BikeRide;
         DateTimePicker activityDatePicker;
         DateTimePicker activityTimePicker;
         DateTimePicker activityDurationPicker;
@@ -104,17 +108,41 @@
             activityTypeLabel.Anchor = AnchorStyles.Left;
             mainTableLayoutPanel.Controls.Add(activityTypeLabel, 0, 3);
 
-            // activityTypeComboBox
-            activityTypeComboBox = new ComboBox();
-            activityTypeComboBox.AutoSize = true;
-            activityTypeComboBox.Font = GeneralValues.SubtitleFont;
+            // activityTypeFlowLayoutPanel
+            activityTypeFlowLayoutPanel = new FlowLayoutPanel();
+            activityTypeFlowLayoutPanel.FlowDirection = FlowDirection.LeftToRight;
+            activityTypeFlowLayoutPanel.AutoSize = true;
+            activityTypeFlowLayoutPanel.Font = GeneralValues.SubtitleFont;
+            mainTableLayoutPanel.Controls.Add(activityTypeFlowLayoutPanel, 1, 3);
 
-            foreach (Activity.ActivityType type in Enum.GetValues(typeof(Activity.ActivityType)))
-                activityTypeComboBox.Items.Add(type);
+            // activityTypeRadioBox_Workout
+            activityTypeRadioBox_Workout = new CustomRadioButton();
+            activityTypeRadioBox_Workout.AutoSize = true;
+            activityTypeRadioBox_Workout.Text = "Workout";
+            activityTypeRadioBox_Workout.Checked = true;
+            activityTypeRadioBox_Workout.CheckedChanged += ChangeControls;
+            activityTypeFlowLayoutPanel.Controls.Add(activityTypeRadioBox_Workout);
 
-            activityTypeComboBox.SelectedIndex = 0;
-            activityTypeComboBox.SelectedIndexChanged += ChangeControls;
-            mainTableLayoutPanel.Controls.Add(activityTypeComboBox, 1, 3);
+            // activityTypeRadioBox_Run
+            activityTypeRadioBox_Run = new CustomRadioButton();
+            activityTypeRadioBox_Run.AutoSize = true;
+            activityTypeRadioBox_Run.Text = "Run";
+            activityTypeRadioBox_Run.CheckedChanged += ChangeControls;
+            activityTypeFlowLayoutPanel.Controls.Add(activityTypeRadioBox_Run);
+
+            // activityTypeRadioBox_Hike
+            activityTypeRadioBox_Hike = new CustomRadioButton();
+            activityTypeRadioBox_Hike.AutoSize = true;
+            activityTypeRadioBox_Hike.Text = "Hike";
+            activityTypeRadioBox_Hike.CheckedChanged += ChangeControls;
+            activityTypeFlowLayoutPanel.Controls.Add(activityTypeRadioBox_Hike);
+
+            // activityTypeRadioBox_BikeRide
+            activityTypeRadioBox_BikeRide = new CustomRadioButton();
+            activityTypeRadioBox_BikeRide.AutoSize = true;
+            activityTypeRadioBox_BikeRide.Text = "Bike Run";
+            activityTypeRadioBox_BikeRide.CheckedChanged += ChangeControls;
+            activityTypeFlowLayoutPanel.Controls.Add(activityTypeRadioBox_BikeRide);
 
             // activityDateLabel
             activityDateLabel = new Label();
@@ -237,17 +265,20 @@
 
             mainTableLayoutPanel.RowCount = 8;
 
-            ChangeControls(null, null);
+            ChangeControls(activityTypeRadioBox_Workout, null);
         }
 
         private void ChangeControls(Object sender, EventArgs e)
         {
-            for(int i = 0; i <= mainTableLayoutPanel.RowCount - 8; i++)
+            RadioButton rb = sender as RadioButton;
+            if (rb == null || !rb.Checked) return;
+
+            for (int i = 0; i <= mainTableLayoutPanel.RowCount - 8; i++)
             {
                 RemoveRow(mainTableLayoutPanel, mainTableLayoutPanel.RowCount - i);
             }
             
-            if (activityTypeComboBox.SelectedIndex == (int)Activity.ActivityType.Workout)
+            if (activityTypeRadioBox_Workout.Checked)
             {
                 // activityNumberOfSetsLabel
                 activityNumberOfSetsLabel = new Label();
@@ -371,7 +402,7 @@
 
                 mainTableLayoutPanel.RowCount = 12;
 
-                if (activityTypeComboBox.SelectedIndex != (int)Activity.ActivityType.Bike_Ride)
+                if (activityTypeRadioBox_BikeRide.Checked)
                 {
                     // activityAvgPaceLabel
                     activityAvgPaceLabel = new Label();
@@ -481,47 +512,40 @@
             
             String title = activityTitleTextBox.Text;
             String description = activityDescriptionTextBox.Text;
-            Activity.ActivityType type = (Activity.ActivityType)Enum.GetValues(typeof(Activity.ActivityType)).GetValue(activityTypeComboBox.SelectedIndex);
             DateTime date = DateTime.Parse(activityDatePicker.Text);
             DateTime duration = DateTime.Parse(activityDurationPicker.Text);
             Int32 calories = Int32.Parse(activityCaloriesNumericUpDown.Text);
             Int32 avgHR = Int32.Parse(activityAvgHRNumericUpDown.Text);
             String gpxFile = fileInfo.FullName;
 
-            switch(activityTypeComboBox.SelectedIndex)
+            if(activityTypeRadioBox_Workout.Checked)
             {
-                case (int)Activity.ActivityType.Workout:
-                    {
-                        Int32 numberOfSets = Int32.Parse(activityNumberOfSetsNumericUpDown.Text);
-                        activity = new WorkoutActivity(title, description, date, duration, calories, avgHR, numberOfSets);
-                        break;
-                    }
-                case (int)Activity.ActivityType.Hike:
-                    {
-                        Double elevation = Double.Parse(activityElevationNumericUpDown.Text);
-                        Double distance = Double.Parse(activityDurationNumericUpDown.Text);
-                        DateTime avgPace = DateTime.Parse(activityAvgPacePicker.Text);
-                        Double avgSpeed = Double.Parse(activityAvgSpeedNumericUpDown.Text);
-                        activity = new HikeActivity(title, description, date, duration, calories, avgHR, elevation, distance, avgPace, avgSpeed, gpxFile);
-                        break;
-                    }
-                case (int)Activity.ActivityType.Run:
-                    {
-                        Double elevation = Double.Parse(activityElevationNumericUpDown.Text);
-                        Double distance = Double.Parse(activityDurationNumericUpDown.Text);
-                        DateTime avgPace = DateTime.Parse("00:" + activityAvgPacePicker.Text);
-                        Double avgSpeed = Double.Parse(activityAvgSpeedNumericUpDown.Text);
-                        activity = new RunActivity(title, description, date, duration, calories, avgHR, elevation, distance, avgPace, avgSpeed, gpxFile);
-                        break;
-                    }
-                case (int)Activity.ActivityType.Bike_Ride:
-                    {
-                        Double elevation = Double.Parse(activityElevationNumericUpDown.Text);
-                        Double distance = Double.Parse(activityDurationNumericUpDown.Text);
-                        Double avgSpeed = Double.Parse(activityAvgSpeedNumericUpDown.Text);
-                        activity = new BikeRideActivity(title, description, date, duration, calories, avgHR, elevation, distance, avgSpeed, gpxFile);
-                        break;
-                    }
+                Int32 numberOfSets = Int32.Parse(activityNumberOfSetsNumericUpDown.Text);
+                activity = new WorkoutActivity(title, description, date, duration, calories, avgHR, numberOfSets);
+            }
+            else if(activityTypeRadioBox_Hike.Checked)
+            {  
+                Double elevation = Double.Parse(activityElevationNumericUpDown.Text);
+                Double distance = Double.Parse(activityDurationNumericUpDown.Text);
+                DateTime avgPace = DateTime.Parse(activityAvgPacePicker.Text);
+                Double avgSpeed = Double.Parse(activityAvgSpeedNumericUpDown.Text);
+                activity = new HikeActivity(title, description, date, duration, calories, avgHR, elevation, distance, avgPace, avgSpeed, gpxFile);   
+            }
+            else if (activityTypeRadioBox_Run.Checked)
+            {
+                
+                Double elevation = Double.Parse(activityElevationNumericUpDown.Text);
+                Double distance = Double.Parse(activityDurationNumericUpDown.Text);
+                DateTime avgPace = DateTime.Parse("00:" + activityAvgPacePicker.Text);
+                Double avgSpeed = Double.Parse(activityAvgSpeedNumericUpDown.Text);
+                activity = new RunActivity(title, description, date, duration, calories, avgHR, elevation, distance, avgPace, avgSpeed, gpxFile);
+            }
+            else if (activityTypeRadioBox_BikeRide.Checked)
+            {
+                Double elevation = Double.Parse(activityElevationNumericUpDown.Text);
+                Double distance = Double.Parse(activityDurationNumericUpDown.Text);
+                Double avgSpeed = Double.Parse(activityAvgSpeedNumericUpDown.Text);
+                activity = new BikeRideActivity(title, description, date, duration, calories, avgHR, elevation, distance, avgSpeed, gpxFile);
             }
 
             Activity.AddActivity(activity);

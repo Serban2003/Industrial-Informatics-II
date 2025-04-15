@@ -23,10 +23,10 @@ namespace ActivityTracker
         internal static Int32 PaddingValue = 15;
         internal static Int32 CornerRadius = 5;
 
-        internal static Int32 animationTransitionSpeed = 10;
+        internal static Int32 AnimationTransitionSpeed = 10;
 
-        internal static string appFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ActivityTracker");
-        internal static string activitiesDatabase = Path.Combine(appFolder, "activitiesDatabase.csv");
+        internal static string AppFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ActivityTracker");
+        internal static string ActivitiesDatabase = Path.Combine(AppFolder, "activitiesDatabase.csv");
     
         public static GraphicsPath GetRoundedRectanglePath(Rectangle rect, int radius)
         {

@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ActivityTracker.Activity">
+    <Position X="10.75" Y="1.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="ActivityTracker.Activity.ActivityType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Activity.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>IAAAAAIAQACiAEAAIAAAAACgAAgBoACBAQAAASAAAAA=</HashCode>
+      <FileName>Activity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActivityTracker.WorkoutActivity">
+    <Position X="14.5" Y="1.25" Width="1.5" />
+    <InheritanceLine Type="ActivityTracker.Activity" FixedToPoint="true">
+      <Path>
+        <Point X="11.156" Y="1.25" />
+        <Point X="11.156" Y="0.875" />
+        <Point X="15.188" Y="0.875" />
+        <Point X="15.188" Y="1.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAhAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Activity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActivityTracker.RunActivity">
+    <Position X="18.25" Y="1.25" Width="1.75" />
+    <InheritanceLine Type="ActivityTracker.Activity" FixedToPoint="true">
+      <Path>
+        <Point X="12.094" Y="1.25" />
+        <Point X="12.094" Y="0.875" />
+        <Point X="19.052" Y="0.875" />
+        <Point X="19.052" Y="1.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAgAAAAIAAAACAAAAAAAAAAAAEgAAABAACAAAAAIAAA=</HashCode>
+      <FileName>Activity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActivityTracker.BikeRideActivity">
+    <Position X="12.75" Y="1.25" Width="1.5" />
+    <InheritanceLine Type="ActivityTracker.Activity" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.625" Y="1.25" />
+        <Point X="11.625" Y="0.875" />
+        <Point X="13.438" Y="0.875" />
+        <Point X="13.438" Y="1.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAEgAAABAAAAAAAAIAAA=</HashCode>
+      <FileName>Activity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActivityTracker.HikeActivity">
+    <Position X="16.25" Y="1.25" Width="1.75" />
+    <InheritanceLine Type="ActivityTracker.Activity" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.625" Y="1.25" />
+        <Point X="11.625" Y="0.875" />
+        <Point X="17.052" Y="0.875" />
+        <Point X="17.052" Y="1.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAgAAAAIAAAACAAAAAAAAAAAAEgAAABAACAAAAAIAAA=</HashCode>
+      <FileName>Activity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActivityTracker.ActivityForm">
+    <Position X="6" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAACAAAAAAIACIAAACIAAAACAAAgAAAAAAAAA=</HashCode>
+      <FileName>ActivityForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActivityTracker.ActivityPanel">
+    <Position X="1.75" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAIAAAAAAKAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>ActivityPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActivityTracker.CustomComboBox">
+    <Position X="3.25" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AACCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomComboBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActivityTracker.ActivityTracker">
+    <Position X="15" Y="5.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAICAASAAAADAAADAAACCKSAAAAAgAEAAAAAKAAA=</HashCode>
+      <FileName>ActivityTracker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActivityTracker.CustomNumericUpDown">
+    <Position X="0.5" Y="5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomNumericUpDown.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActivityTracker.CustomRadioButton">
+    <Position X="3.25" Y="7" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACCAAAAAAAAAAAAAACAAgAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomRadioButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActivityTracker.CustomStyleButton">
+    <Position X="1.25" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QACABAAAAAAAAAAAABACIABAAAAAAAAAgAAACAAAAAA=</HashCode>
+      <FileName>CustomStyleButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActivityTracker.FileUploadTabPage">
+    <Position X="8" Y="5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>MAAAAAAAAAAAAAKAIACAQgIAKACACCgAAABAQAAAAAA=</HashCode>
+      <FileName>FileUploadTabPage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActivityTracker.GeneralValues">
+    <Position X="17.75" Y="5.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AABAggAAAAAAAQAAIAAAACACAABBAQAAAABgDAAgNKA=</HashCode>
+      <FileName>GeneralValues.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActivityTracker.MenuStripRenderer">
+    <Position X="12" Y="9.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneralValues.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActivityTracker.MenuStripColors">
+    <Position X="11.75" Y="7.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQADABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneralValues.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActivityTracker.GPXPanel">
+    <Position X="4" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAABAAAAAAAgAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GPXPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActivityTracker.ManualUploadTabPage">
+    <Position X="5.75" Y="5" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AoARDiGyAkTBAgADIAAAQgAAKAmACDgEigAMCABAAAI=</HashCode>
+      <FileName>ManualUploadTabPage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActivityTracker.Program">
+    <Position X="13" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActivityTracker.UploadActivityForm">
+    <Position X="8.25" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>BAAACAAAQCAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UploadActivityForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

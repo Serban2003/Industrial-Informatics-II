@@ -6,6 +6,7 @@ namespace ActivityTracker
     {
         public enum ActivityType
         {
+            All,
             Workout,
             Run,
             Hike,
@@ -107,11 +108,16 @@ namespace ActivityTracker
                     Int32 calories = Int32.Parse(fields[5]);
                     Int32 avgHR = Int32.Parse(fields[6]);
                     String gpxFile = fields[7];
-                    Double elevation = Double.Parse(fields[8]);
-                    Double distance = Double.Parse(fields[9]);
-                    DateTime avgPace = DateTime.Parse(fields[10]);
-                    Double avgSpeed = Double.Parse(fields[11]);
-                    Int32 numberOfSets = Int32.Parse(fields[12]);
+
+                    Double elevation = 0, distance = 0, avgSpeed = 0;
+                    Int32 numberOfSets = 0;
+                    DateTime avgPace = new DateTime();
+
+                    if (fields[8] != "" && fields[8] != "0") elevation = Double.Parse(fields[8]);
+                    if (fields[9] != "" && fields[9] != "0") distance = Double.Parse(fields[9]);
+                    if (fields[10] != "" && fields[10] != "0") avgPace = DateTime.Parse(fields[10]);
+                    if (fields[11] != "" && fields[11] != "0") avgSpeed = Double.Parse(fields[11]);
+                    if (fields[12] != "" && fields[12] != "0") numberOfSets = Int32.Parse(fields[12]);
                      
                     switch (fields[2]){
                         case "Run":
@@ -142,7 +148,7 @@ namespace ActivityTracker
 
         public static void AddActivity(Activity activity)
         {
-            File.AppendAllText(GeneralValues.activitiesDatabase, $"{activity.ToCSVString()}\n");
+            File.AppendAllText(GeneralValues.ActivitiesDatabase, $"{activity.ToCSVString()}\n");
         }
     }
 

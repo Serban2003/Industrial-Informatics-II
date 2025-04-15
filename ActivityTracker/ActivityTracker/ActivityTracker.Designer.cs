@@ -42,11 +42,5 @@
         }
 
         #endregion
-        private TableLayoutPanel mainTableLayoutPanel;
-        private MenuStrip mainMenuStrip;
-        private ToolStripMenuItem uploadActivityStripMenuItem;
-        private Label activitiesTitle;
-        private static TableLayoutPanel activitiesTableLayoutPanel;
-        private static Label noActivitiesLabel;
     }
 }

@@ -24,7 +24,7 @@ namespace ActivityTracker
             currentBackColor = GeneralValues.AccentColor;
 
             transitionTimer = new System.Windows.Forms.Timer();
-            transitionTimer.Interval = GeneralValues.animationTransitionSpeed;
+            transitionTimer.Interval = GeneralValues.AnimationTransitionSpeed;
             transitionTimer.Tick += TransitionStep;
 
             MouseEnter += (s, e) =>

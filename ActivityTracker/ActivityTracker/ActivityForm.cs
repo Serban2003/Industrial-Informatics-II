@@ -58,7 +58,7 @@
 
             CreateActivityFields("Duration", activity.FormatedDuration, "(hh:mm:ss)");
             CreateActivityFields("Calories", activity.Calories.ToString(), "Cals");
-            CreateActivityFields("Average Heart Rate", activity.Calories.ToString(), "bpm");
+            CreateActivityFields("Average Heart Rate", activity.AvgHR.ToString(), "bpm");
         }
 
         public ActivityForm(RunActivity activity) : this((Activity)activity)
@@ -86,7 +86,7 @@
         }
         public ActivityForm(WorkoutActivity activity) : this((Activity)activity)
         {
-            CreateActivityFields("Distance", activity.NumberOfSets.ToString(), "");
+            CreateActivityFields("No. of Sets", activity.NumberOfSets.ToString(), "");
         }
 
         private void CreateActivityFields(String title, String value, String unit)
