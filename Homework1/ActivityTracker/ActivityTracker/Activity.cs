@@ -193,7 +193,7 @@ namespace ActivityTracker
 
         public DateTime AvgPace
         {
-            set => avgPace = value; get => avgPace;
+            get => avgPace;
         }
         public String FormatedAvgPace
         {
